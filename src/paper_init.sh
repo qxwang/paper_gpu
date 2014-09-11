@@ -30,6 +30,16 @@ then
 fi
 
 case ${hostname} in
+	
+  tlhpc)
+    # Calculate XIDs based on mypx
+    xid0=$(( 1*(mypx-1)    ))
+
+    instances=(
+      #                               GPU       NET FLF GPU OUT
+      # mask  bind_host               DEV  XID  CPU CPU CPU CPU
+      "0x0606 ${hostname}-2.tenge.pvt  0  $xid0  2   4   3   4" # Instance 0, eth2
+    );;
 
   snb*)
     # Calculate XIDs based on mypx
@@ -103,16 +113,16 @@ case ${hostname} in
       "0x7070 ${hostname}-3.tenge.pvt  1  $xid1  6  12   5  12" # Instance 1, eth3
     );;
 
-  paper5)
-    # Calculate XIDs based on mypx
-    xid0=$(( 1*(mypx-1)    ))
-
-    instances=( 
-      #                               GPU       NET FLF GPU OUT
-      # mask  bind_host               DEV  XID  CPU CPU CPU CPU
-      "0x0606 ${hostname}-2.tenge.pvt  0  $xid0  2   4   3   4" # Instance 0, eth2
-    );;
-
+#  paper5)
+#    # Calculate XIDs based on mypx
+#    xid0=$(( 1*(mypx-1)    ))
+#
+#    instances=( 
+#      #                               GPU       NET FLF GPU OUT
+#      # mask  bind_host               DEV  XID  CPU CPU CPU CPU
+#      "0x0606 ${hostname}-2.tenge.pvt  0  $xid0  2   4   3   4" # Instance 0, eth2
+#    );;
+#   modified by wqx
   *)
     echo "This host (${hostname}) is not supported by $(basename $0)"
     exit 1

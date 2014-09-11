@@ -536,8 +536,9 @@ static void *run(hashpipe_thread_args_t * args)
 
     /* Read network params */
     struct hashpipe_udp_params up = {
-	.bindhost = "0.0.0.0",
-	.bindport = 8511,
+//	.bindhost = "0.0.0.0",
+	.bindhost = "127.0.0.1",   //wqx
+	.bindport = 8008,
 	.packet_size = 8200
     };
     hashpipe_status_lock_safe(&st);
